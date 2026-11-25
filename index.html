@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Necessidades e Prioridades das Lojas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: o Prestativo do Brandbook Leo: próximo, simples, direto ao ponto
+   IDEA: peça institucional da Leo: faixa verde com linhas finas de cantos arredondados, logo no canto superior direito
+   PICTURE: o próprio formulário numa coluna branca, opções que viram verde Leo ao serem marcadas
+   COLOUR and TYPE: verde Leo #00583D (~50%), amarelo #FFED00 nos destaques, preto e verdes de apoio; Barlow no lugar da D-Din (títulos em caixa alta), Open Sans (fonte de sistema do Brandbook)
+   LAYOUT: barra branca com logo à direita, faixa verde de título com progresso amarelo, coluna de 680px */
+:root{color-scheme:light;--g:#00583D;--g2:#244635;--g3:#386043;--gm:#72B502;--gl:#B5E700;--y:#FFED00;--k:#000;--cz:#C5C6B5;--bg:#F4F5EF;--ink:#1b1f1c;--mute:#5d665f;--pink:#E20045}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Open Sans",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Barlow,"Open Sans",sans-serif;line-height:1.08;text-wrap:balance;margin:0}
+.ms{font-family:"Material Symbols Outlined";font-weight:400;font-style:normal;font-size:22px;line-height:1;display:inline-block;vertical-align:middle;-webkit-font-smoothing:antialiased;font-feature-settings:"liga"}
+.top{background:#fff;border-bottom:1px solid var(--cz)}
+.top .in{max-width:1040px;margin:0 auto;padding:12px max(5vw,16px);display:flex;align-items:center;gap:12px}
+.top .tag{font:600 13px "Open Sans",sans-serif;color:var(--g);display:flex;align-items:center;gap:6px}
+.logo{width:48px;height:48px;border-radius:10px;flex:none;display:block;margin-left:auto}
+.hero{background:var(--g);color:#fff;position:relative;overflow:hidden}
+.hero .in{max-width:1040px;margin:0 auto;padding:clamp(28px,5vw,48px) max(5vw,16px) 26px;position:relative;z-index:1}
+.hero h1{font-weight:600;font-size:clamp(26px,4.6vw,44px);text-transform:uppercase;max-width:15em;letter-spacing:.005em}
+.hero p{margin:10px 0 0;font-weight:300;font-size:16px;max-width:36em;opacity:.95}
+.hero svg{position:absolute;right:-20px;top:16px;width:min(46vw,420px);height:calc(100% - 16px);z-index:0}
+.pg{display:flex;align-items:center;gap:12px;margin-top:22px;font:600 13px "Open Sans",sans-serif}
+.pg .tr{flex:1;max-width:420px;height:6px;border-radius:6px;background:rgba(255,255,255,.2);overflow:hidden}
+.pg i{display:block;height:100%;width:0;background:var(--y);border-radius:6px;transition:width .35s}
+.wrap{max-width:1040px;margin:0 auto;padding:28px max(5vw,16px) 64px;display:grid;grid-template-columns:minmax(0,680px);justify-content:center}
+.card{background:#fff;border:1px solid var(--cz);border-radius:16px;padding:clamp(20px,4vw,36px)}
+.step{font:600 13px "Open Sans",sans-serif;color:var(--g);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.step::before{content:"";width:18px;height:3px;border-radius:3px;background:var(--y);box-shadow:0 0 0 1px var(--g)}
+.step:empty{display:none}
+.card h2{font-weight:600;font-size:clamp(22px,3.3vw,28px);color:var(--g2);margin-bottom:8px}
+.help{color:var(--mute);font-size:15px;margin:0 0 18px}
+.req{color:var(--pink);white-space:nowrap}
+.search{width:100%;font:16px "Open Sans",sans-serif;padding:12px 14px 12px 44px;border:1px solid var(--cz);border-radius:12px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300583D' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5L21 21'/%3E%3C/svg%3E") 14px 50%/20px no-repeat;color:var(--ink);margin-bottom:12px}
+.search:focus,textarea:focus,.other:focus{outline:none;border-color:var(--g);box-shadow:0 0 0 3px var(--y)}
+button:focus-visible,.opt:focus-within,.scale label:focus-within{outline:3px solid var(--y);outline-offset:2px}
+.list{display:grid;gap:8px}.list.scrollbox{max-height:440px;overflow:auto;padding:3px 6px 3px 3px}
+.opt{display:flex;gap:12px;align-items:center;min-height:50px;padding:10px 14px;border:1px solid var(--cz);border-radius:12px;cursor:pointer;background:#fff;transition:background .15s,border-color .15s,color .15s}
+.opt:hover{border-color:var(--g)}
+.opt input{appearance:none;-webkit-appearance:none;width:22px;height:22px;flex:none;margin:0;border:1.5px solid var(--cz);border-radius:6px;background:#fff center/16px no-repeat}
+.opt input[type=radio]{border-radius:50%}
+.opt.on{background:var(--g);border-color:var(--g);color:#fff}
+.opt.on input{border-color:var(--y);background-color:var(--y);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300583D' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
+.opt.off{opacity:.4;cursor:not-allowed}
+.opt b{font:700 17px Barlow,sans-serif;color:var(--g);font-variant-numeric:tabular-nums;flex:none;width:2.9em}
+.opt.on b{color:var(--y)}
+.opt small{margin-left:auto;color:var(--mute);font-size:13px;white-space:nowrap}.opt.on small{color:#d9e8df}
+.grp{font:600 14px Barlow,sans-serif;text-transform:uppercase;letter-spacing:.02em;color:var(--g);margin:18px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--cz)}
+.grp:first-child{margin-top:0}
+.count{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;padding:5px 12px;border-radius:20px;background:#fff;border:1px solid var(--cz);color:var(--g);margin-bottom:14px}
+.count.full{background:var(--y);border-color:var(--y);color:var(--g)}
+.rate{border:1px solid var(--cz);border-radius:12px;padding:14px;margin-bottom:10px}
+.rate h3{font-size:17px;font-weight:600;color:var(--g2);margin-bottom:10px}
+.scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.scale label{display:grid;place-items:center;min-height:48px;border:1px solid var(--cz);border-radius:10px;cursor:pointer;font-weight:600;font-size:14px;text-align:center;padding:4px;color:var(--g2);transition:background .15s}
+.scale label:hover{border-color:var(--g)}
+.scale input{position:absolute;opacity:0;pointer-events:none}
+.scale label.on[data-v="Baixo"]{background:var(--gl);border-color:var(--gl);color:var(--g2)}
+.scale label.on[data-v="Médio"]{background:var(--gm);border-color:var(--gm);color:#fff}
+.scale label.on[data-v="Alto"]{background:var(--g);border-color:var(--g);color:#fff}
+.scale label.on[data-v="Crítico"]{background:var(--k);border-color:var(--k);color:var(--y)}
+.legend{font-size:13.5px;color:var(--ink);background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:16px;display:grid;gap:4px}
+.legend p{margin:0;display:flex;gap:10px;align-items:baseline}
+.legend p::before{content:"";flex:none;width:12px;height:12px;border-radius:3px;transform:translateY(1px)}
+.legend p:nth-child(1)::before{background:var(--gl)}.legend p:nth-child(2)::before{background:var(--gm)}.legend p:nth-child(3)::before{background:var(--g)}.legend p:nth-child(4)::before{background:var(--k)}
+textarea,.other{width:100%;font:16px/1.5 "Open Sans",sans-serif;padding:12px 14px;border:1px solid var(--cz);border-radius:12px;background:#fff;color:var(--ink)}
+textarea{min-height:170px;resize:vertical}.other{margin-top:8px}
+.err{color:var(--pink);font-weight:600;font-size:14px;margin:14px 0 0;min-height:1em}
+.nav{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+button{font:600 17px Barlow,sans-serif;min-height:50px;padding:0 24px;border-radius:12px;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pri{background:var(--g);color:#fff;margin-left:auto}.pri:hover{background:var(--g2)}
+.pri::after{content:"";width:18px;height:18px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFED00' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12h15M13 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
+.pri:disabled{opacity:.6;cursor:wait}
+.sec{background:#fff;color:var(--g);border:1px solid var(--cz)}.sec:hover{border-color:var(--g)}
+.empty{color:var(--mute);font-size:14px;padding:10px 0}
+.done{text-align:center;padding:16px 0 4px}
+.done .badge{width:84px;height:84px;border-radius:22px;background:var(--y);display:grid;place-items:center;margin:0 auto 18px}
+.done .help{max-width:30em;margin-inline:auto}
+.sign{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:22px;padding-top:20px;border-top:1px solid var(--cz);font:600 17px Barlow,sans-serif;color:var(--g)}
+.sign img{width:44px;height:44px;border-radius:9px}
+@media(prefers-reduced-motion:reduce){.pg i,.opt,.scale label{transition:none}}
+@media(max-width:600px){.scale label{font-size:13px}.opt small{display:none}.hero svg{opacity:.5}.logo{width:42px;height:42px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><span class="tag">Leo Resolve · Pesquisa com as lojas</span><img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAJqElEQVR42u2da4ycVRnHf88577yzO3tju1tqw6WK1whspRZKIrFGCvQCIRKslIYQQExQiR8MIcaYTb0FMcFLgA8mVgppiAaJ2lCJBcpFY4oRpDZRgZpgkZZepzs7Ozsz7zmPH95ZpN3u7rT7zu4C55/Mp919z5nnf577c94VAAYxbMCzfFEbXafdiPHrcHoBaAFQQAg4FTRkJyNYeRFvHqZU3MQzr42OyVwYHDRs2OC56rwBrPwMNcvwHrwG8WUJI2AMiN+B0y+xZddOBgdNerKvOm8AI08gMp+acyCCYILUMtUFD6rE1qJ6AK8r2LJrp3DZQAdt/lmMWULdJYhEQVqtJEITcjbC+xcYNZ825P0NGLOEmnNB+DMAkYiacxizhLy/wSCsx6tigqOdOX+A4FUR1kd4FoMKSCBg5tTANIKcxQa0PQhk1hxCe4h0Zt0aBQQCAgEBgYBAQEAgIBAQEAgIBAQEAgIBAYGAQEBAICAQENByNNUDjuzUIyqJCw21lhGQDEVp15ITESEgCgUXxrcyJ0AhZ5Xbr32T3oLH+WNlrI15o2pd+Okf+ihVTDBqWREgAuohtsrg5/bTvcBDnfEMWKACDz7bS6lsEatoGKrLzgQpcLAUUWiro/VjZydUQSyUKiZMMrbaCUdWUX9iAppx0gGnFIbKWzOlk0/bhVneWc0DFEGREAWFRCwQEBAICAQEBAICAQGBgEBAABmVImTGbnFmWMhrbNo7OWER3RpNfyfrDL7xTOclGwKMgJHW1hmMUXzV4quSnU6ObbnDpZVdPbbS68oWXGO9LK6ijz3DA5EiBY/6jDSg5cIvWwbOqXDTpYeZ1+XwXqYtj0Rhx8sFHtjeSz0RJJdqlwhoxbBq6RBXLRuiI/Z4lUzkbwSGq4bf/LmbbX/rQtr9lBodzQXhX33xEJu+voeeDpeeIMnm9N+y6gjrLymy9u5FHKgYbKy4Ycsd1xzg7lv3pmtl+SKGxrO+vOYQX7nvDO7f2ofpdPhJ2rXR7F2XBV8XzlxQY+NX99ATOWpFwZqs7kOnDaXlF5b50a1vcMM9Z+EEzjmjyne+sA8dhqQuU1Z6TxbOQ5xXvnf9Xh59vpt9QxESTezbZpUArRs+srDGvE6HjkIcZetr1IA/CmsGSvT319m/N8+5ZwyTb1e0DLkoe99mDVCH7g7PhxbU2Hc495b5m5NhaOLA+9bdUjYNBxyZ4yxUK0M7aT64mnUChJm5Iq4zHFZLlnnAbMMrE47FmBYcIe/HC1FPGETMUCLWjMNrWUtSweSBnB4bITXi91pZiFUzjWRMe+P5b1tPjrcbDhidvjplRoC25OQLJq/s+GeBe7f0UzOCoBgDwyOGSGHtZ4usvaiIuOmbMu/BtMHvdnSz8ff9JJFvvEYjnY8SUqKjRPji6oNcfsEwvpr6mZYRIGOtXp2NV+ukO7xnSz+/erwPehKoGxixfPRjZb67fh+rlpaQDJz4WCKVOPjmw+9j1z8KUPCpFhx/+suG3UdyXLr4Few0U4nmCDCz5aBT1TIGoh6H6fD0xQl3XnOA21cfxMRAuUkf0qTn9E4wRrHdCSbWcX9rjOAjjwN8AlbeI9XQRKFWirh62VG+dt1BqApuSKYUvHPQltPmzUTj95wTnD/RJ/1ZVuHUO7Ic7UYEr2AnGAhTTYVkY7A9sHt/THnUpEPEvAPL0XMN1ijuBMdPFbwXbF6xbcor/8lz79Y+Nm3vZSgRsMy5udXo3fEevGMF/+qemPu29vGLp+ZxtBhBhyeKPIkSNGAmBP/AU70UiznocEQ9Cc7LnDv572gCtOFcbR5sm7L79Zj7t/ax8cnxgk8ydJiBgEZkIxHEPcq/946Zml6OHJlA8LwLesLNnEgjaVQiTfZ19SSOpDHps9VBV5vnYDHirl/OZ9PTvRw8nNr4uDfB+7G9TKM00di7tWnGLcd9GWMEGYu+dI4QEEVKtS64oQhi39TGpOCbDpSHKyZ9drtj8x97+fkTfRT/m4euBCKFiqE2xZqmwzVXB8opqOCORriO8Zmwa2TChiomYvytoazviElj+HzCpoqD7i7P99e+yeN/6SZq8/hJJgJEUvv95L86KI80k4HBdZcUcaMG0+ap1AwiSvvHyzgP+laVVCZYT0mc8NzuAiM6ef7lG32Du9bvZePjfbgoJUPfnqOJYhPh5pWHsCb9m5bXgiZbQASowW1rDnHblYemPv0eKMDnv302v97Wh7WTmx5GYd3yIus+UzxWznoSJqUNrvzW+3nsud5JW57GAFVYtbTEqmWl8XWgE1RDp1uSjrLLTpvTROeEyCrXXDzEI9v6ppajgK+cupYnTsjllCs+WeKx7fOQqbLhxnrN+qY5EwU13Uw3itRg5UCJjvk1RmtTj4RM54taUajByvOHoSuh5syMCDazWpBmXIk2gKsJvfMdVwyUGBk1qGntxJ3W4MNnVjnvAxVGqpI212awBXpKBKgCVikNW944GuNNtl0v9XDtxUPEjdeGe986YTgvkIfVnyiR1CUtr2trE8Vml5j07FmrJBXLA0+fhukEbSQ40/0o4IaFyxeXODRi+eur7ZhuqNUnKgFP7+MV3KiwekmJ1w/mqJQFIqgn2a9VSwSJoViyvLIvhmjyvGhSH+CdIJ2O+x7r5/xFo9y88sjEkcFJH0vo63esWTrE9T9cxLYf7Obs0+uQZD+6YBvR0/ILy3QUPN94cCE/vv0NcvWTUANpzu7YRlR85+aF7D+Um95k3Nj26la55d6z+O3zPaxYXKIQ+2kXt7wKNlaI4OU9eT51xwe5+dIjnLOg1hLzoB6igrJwfp2fPHo6rx3OsfqiITpzHmXyQEA11Zap/yuAMlyxPPKnHrb/vRMp+EmFn/K65tx6Wl2ZnH0BtGzBS0aNjbGcP81SfdXAaItf9qFA3iOxomXTmI7WbFTg7dPROcW0+yb8miZRsxtXwHYm/x/1lqwclqSmLqfYfNLSsrFK6sfUg22UJjTjQavM7weMiyZaGDnMZAWzld8lXFEi3BELCAQEAgICAYGAgEBAICAgEBAICAgEBAICAgGBgIBAwJwjQCpBDLMFqRgML6XjxOqDQGYK6jGiGF4yKJsxIng0CGaG4FGMCMpmQ9U8hPcvEFuLahKk0/LrPQmxtXj/AlXzkGHbzjJwE+gBYhuh6lCCOcp+IsOj6ohtBHoAuIltO8uGwUHDll078boCdAe5yGIlREdZw4ohF1nQHXhdwZZdOxkcbEz+D2LYgGf5oja6TrsR49fh9ALQQsZvVXvvnft0qmoEKy/izcOUipt45rXRMZn/D1VvgCxmboM5AAAAAElFTkSuQmCC" alt="Leo" width="48" height="48"></div></div>
+<header class="hero">
+ <svg viewBox="0 0 420 260" preserveAspectRatio="xMaxYMin meet" fill="none" aria-hidden="true"><path d="M60 0V150a28 28 0 0 0 28 28H420" stroke="#FFED00" stroke-width="1.5"/><path d="M150 0V70a22 22 0 0 0 22 22H420" stroke="#fff" stroke-opacity=".45" stroke-width="1.5"/></svg>
+ <div class="in"><h1>Pesquisa de necessidades e prioridades das lojas</h1><p>Ajude a Leo a entender o suporte que a sua loja precisa. Leva cerca de 5 minutos.</p>
+ <div class="pg"><span id="stepTxt">Início</span><span class="tr"><i id="bar"></i></span></div></div>
+</header>
+<div class="wrap">
+ <main class="card" id="form" aria-live="polite"></main>
+</div>
+<script>
+{
+const LOJAS=`1001	Gasômetro
+1003	Paes Leme
+1004	Sorocaba
+1006	Santos
+1007	São José
+1008	Sampaio
+1011	Aricanduva
+1012	Guarulhos
+1013	Duque de Caxias
+1014	Diadema
+1015	São Miguel
+1016	Lapa
+1017	Aeroporto
+1018	Ipiranga
+1021	São Bernardo
+1022	Atibaia
+1023	Santo André
+1024	Nova Iguaçu
+1025	Osasco
+1026	Mogi das Cruzes
+1027	Rio Preto
+1028	João Dias
+1049	Feira de Santana
+1050	Salvador
+1051	Lauro de Freitas
+1054	Campinas
+1056	Piracicaba
+1058	Barueri
+1059	Santo André II
+1060	Mogi Guaçu
+1061	Campo Grande
+1062	Campo Grande - VEX
+1063	Campo Grande II
+1064	Feira de Santana - VEX
+1065	Nordestina
+1066	Hortolândia
+1067	Cachoeirinha
+1068	Camaçari
+1069	Taboão da Serra
+1070	Grajaú
+1071	CAV - Grandes Contas
+1072	Presidente Prudente
+1074	Araçatuba
+1075	Taubaté
+1076	Campinas Ouro Verde
+1077	Jacarepaguá
+1078	Caraguatatuba
+1080	Jundiaí
+1081	Vila Ema
+1082	Mauá
+1083	Cajazeiras
+1085	Suzano
+1086	Limeira
+1087	Indaiatuba
+1088	Campo Grande - RJ
+1089	Castelo
+1090	Sete Lagoas
+1091	Ipatinga
+1092	Venda Nova BH
+1093	Contagem
+1094	Pimentas
+1096	Cotia`.trim().split("\n").map(l=>{const [c,...n]=l.split("\t");return {c:c.trim(),n:n.join(" ").trim()}});
+const SERV={"TI": ["Acesso Privilegiado SAP", "Gestão de Acessos", "Gestão de Colaboradores", "Gestão de Terceiros", "Reset e Desbloqueio", "Equipamentos de TI", "Softwares/Aplicativos", "Internet", "Pasta de Rede", "Segurança da Informação", "Gestão de Arquitetura", "Regras de Firewall/GPO", "Servidores/Estações", "Desconto Dinâmico", "GCP", "Leo Resolve", "LeoMob", "LeoPlan", "Portal Rede Leo", "Promob", "Robô/RPA", "SAP", "SCL", "SVL", "Viasoft", "WMS / TMS / Routeasy", "Suporte técnico", "Suporte Telefonia"], "RH": ["Admissão PJ", "Desligamento de colaborador", "Férias Fora do Prazo", "Solicitação de Afastamentos e Licenças", "Convênios", "Reserva Restaurante", "Vales Alimentação, Refeição ou Transportes", "Premiação", "Solicitação de Kit", "Cordão pelo Tempo de Casa", "Solicitação Crachás e Cordões", "Alterações de Dados Bancários - RH", "Declarações Gerais - RH", "Dúvidas Folha de Pagamento/Holerite", "Ajuste de dados cadastrais - Leo Plus", "Arrependimento de resgate - Leo Plus", "Criação de Cadastro - Leo Plus", "Erro ao resgatar - Leo Plus", "Erro no acesso - Leo Plus", "Erro no site Leo Plus", "Pontuação Leo Plus", "Solicitação de Uniformes e EPI'S", "Hierarquia Meu RH & Ponto", "Ponto - Alteração de Horário", "Reset de Senha Meu RH e Ponto", "Solicitação de Documentação - Processo Trabalhista", "Abandono de Empresa", "Punições - RH", "Solicitação de Reembolso na Folha", "Curso não funciona no UniLeo", "Curso não localizado no UniLeo", "Login no UniLeo", "Problema de conclusão de curso no UniLeo", "Solicitação de relatório do UniLeo"], "Abastecimento e Dados": ["Cadastro Incorreto de Produto no Site (e-Commerce)", "Dashboard no Power BI", "Alteração - Cadastro de Clientes", "Alteração - Cadastro de Fornecedor", "Bloqueio - Cadastro de Fornecedor", "Inclusão - Cadastro de Fornecedor", "Inclusão ou Alteração - Material de Consumo", "Inclusão ou Alteração Material de Revenda", "Ajuste de Preços"], "Jurídico, Riscos e Compliance": ["Esclarecer dúvidas jurídicas", "Ajuste de perfil ou erro no Projuris", "Envio de correspondência ou documento juridico", "Solicitação de documentos jurídicos", "Avaliação de Colaboradores (Due Diligence)", "Avaliação de Fornecedores (Due Diligence)", "SAP – Criação ou Alteração de Fluxo de Aprovação", "Registro de Suspeita de Fraude / Golpe / Irregularidade"], "Comercial": ["Gestão de Contratos SAP", "Solicitação de acesso ao SCL - SISTEMA COMERCIAL LEO"], "Expansão, Compras e Facilities": ["Utilização do Cartão Corporativo", "Embaixadores da Marca", "Solicitação de Compras Centralizadas", "Acesso ao Estacionamento", "Cadastro de colaborador na plataforma de transporte", "Compras de bens de pequeno valor", "Confecção de cartão de visita", "Controle de Pragas", "Dispensers", "Jardinagem", "Limpeza carpetes, estofados e almofadas", "Manutenção cadeiras Flex Form (Escritório) - NS Barueri", "Plataforma de Viagens - Onfly", "Solicitação de insumos loja via malote", "Solicitação de Limpeza", "Solicitação de lockers escritório - NS Barueri", "Solicitação Porta etiqueta para estoques ou placa de rua", "Alarmes", "Ar Condicionado", "Cabeamento ponto de rede", "Cerca Elétrica", "Civil", "Compressor", "Câmeras", "Elétrica", "Hidráulica e Tubulações", "Máquina de Corte", "Móveis e Utensilios", "Serralheria", "Serviço de Segurança Patrimonial", "Bancada de Ferramentas", "Comunicação Visual", "Expositores", "Insumos", "Listen X", "Mobília e Marcenaria", "Mostruário", "Pricefy"], "Logística": ["Criação de Usuario Comprovei", "Coleta pendente", "Pedido NÃO entregue Central de Serviços", "Separação de Revestido/Seriado", "Alteração de Data de Entrega (ZFAN)", "Alteração de Endereço de Entrega (ZFAN, ZMOB, ZCVS)", "Cancelamento de Remessa", "Dificuldade Na Descarga", "Frete Expresso/Spot", "Material Volumoso", "Restrição De Veículo", "Cotação de Frete", "Devolução Pedido em Rota", "Liberação de VG pedido em rota", "Pedidos para análise", "Retira emergencial no CD", "Solicitar Logística Reversa", "Status de pedido que NÃO está no Comprovei", "Pedidos resolvidos pela Loja", "Reab", "Reclamação De Motorista", "Divergência de Pedido"], "Marketing": ["Análise de Categoria", "Atualização de dados", "Cancelamento de voucher", "Cliente não reconhece o resgate", "Cliente sem cadastro", "Erro na transferência", "Erro no Resgate", "Expiração de pontos", "Instabilidade da VITRINE LEO", "Instabilidade da VITRINE MAIS PRÊMIOS", "Penca incorreta", "Problemas pós-resgate da Vitrine Mais Prêmios", "Processamento de Nota Fiscal", "Benefícios e Afiliados no Site (e-Commerce)", "Compras com Problemas com CEP no Site (e-Commerce)", "Criação de Cupons de Desconto no Site (e-Commerce)", "Diferença de Preço no Site (e-Commerce) x Mídias Pagas", "Solicitação de Plano de Corte"], "Financeiro": ["Estorno de Cartão de Crédito", "Levantamento de documentação - Chargeback", "Vendas/Lançamentos em Duplicidade", "Solicitação de Acesso BNDES", "Troca de Equipamento - Maq. Cartões", "Apontamento no Serasa", "Baixa de documento de Renegociação", "Solicitação de documentos de Cobrança", "Solicitação de envio ao jurídico", "Solicitação de Isenção de Juros", "Solicitação de Proposta de Negociação", "Pagou Levou", "Rastrear Nota de Crédito/Débito", "Reativar Nota de Crédito", "Comprovante de Estorno", "Comprovante de Pagamento", "Identificação de Depósito", "Reabertura de Fatura de Pagamento", "Reembolso de Clientes Via Contas a Pagar", "Solicitação de Baixa de Títulos", "Solicitações de Cheque", "Solicitações Gerais - Boleto", "Solicitações Gerais - Cheque", "Solicitação de Avarias e Bônus", "Reposição de Troco", "Criação de Pedido de Compra Setorial", "Faturamento de VM - MKT - Leo Gestão", "Faturamento Serviços de TI - Leo Gestão", "Verba Cooperada - Leo Gestão", "Adiantamento a Fornecedores", "Suprimento de Fundo Fixo - Fundo Fixo", "Destravar Loja"], "Indústria": ["Assistência Técnica - Central de Serviços"], "Fiscal": ["Carta de Correção Eletrônica", "Emissão de Nota Fiscal", "Nota Fiscal de Devolução Consumo e Revenda", "Lançamento de Nota Fiscal"], "Gestão de Estoque": ["Assistência Técnica de Produtos", "Novo Produto Sortimento Loja"], "Operações": ["Solicitar alteração ou inclusão de cliente no Gestão de Carteira", "Solicitar análise de meta global de vendedor ou loja no Gestão de Carteira", "Solicitar revisão de meta do cliente no Gestão de Carteira"]};
+const AREAS=Object.keys(SERV);
+const ESCALA=["Baixo","Médio","Alto","Crítico"];
+const DIF=["Demora na primeira resposta","Demora na resolução dos chamados","Falta de atualização sobre o andamento","Chamados encerrados sem resolução efetiva","Dificuldade de contato com a área responsável","Falta de clareza nas orientações recebidas","Outro"];
+const MAXA=3,MAXS=3,MAXD=3;
+const STEPS=["intro","loja","areas","servicos","escala","dif","aberta","fim"];
+const NAMES={intro:"Boas-vindas",loja:"P1 · Loja",areas:"P2 · Áreas (3)",servicos:"P3 · Serviços (até 5)",escala:"P4 · Nível de impacto",dif:"P5 · Dificuldades (3)",aberta:"P6 · Exemplos",fim:"Encerramento"};
+let st,i,q="";
+const blank=()=>({loja:null,areas:[],servicos:[],escala:{},dificuldades:[],outro:"",exemplos:""});
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const F=document.getElementById("form");
+const key=(a,s)=>a+" › "+s;
+
+function prune(){
+ st.servicos=st.servicos.filter(k=>st.areas.includes(k.split(" › ")[0]));
+ for(const k in st.escala) if(!st.servicos.includes(k)) delete st.escala[k];
+}
+function validate(s){
+ if(s==="loja"&&!st.loja) return "Selecione a sua loja para continuar.";
+ if(s==="areas"&&st.areas.length!==MAXA) return `Selecione exatamente ${MAXA} áreas (faltam ${MAXA-st.areas.length}).`;
+ if(s==="servicos"){const sem=st.areas.filter(a=>!st.servicos.some(k=>k.split(" › ")[0]===a));if(sem.length) return `Selecione pelo menos 1 serviço de: ${sem.join(", ")}.`;}
+ if(s==="escala"){const f=st.servicos.filter(k=>!st.escala[k]).length;if(f) return `Avalie todos os serviços (falta${f>1?"m":""} ${f}).`;}
+ if(s==="dif"){if(st.dificuldades.length!==MAXD) return `Selecione exatamente ${MAXD} dificuldades (falta${MAXD-st.dificuldades.length>1?"m":""} ${MAXD-st.dificuldades.length}).`;
+  if(st.dificuldades.includes("Outro")&&!st.outro.trim()) return "Descreva qual é a outra dificuldade.";}
+ return "";
+}
+function nav(back=true,label="Continuar"){
+ return `<p class="err" id="err" role="alert"></p><div class="nav">${back?'<button class="sec" data-go="-1">Voltar</button>':""}<button class="pri" data-go="1">${label}</button></div>`;
+}
+function head(n,t,h){return `<div class="step">${n}</div><h2>${t}</h2>${h?`<p class="help">${h}</p>`:""}`}
+
+function render(){
+ const s=STEPS[i];let h="";
+ if(s==="intro") h=`${head("Olá, time da loja!","Como o Leo Resolve apoia a sua loja hoje?","Queremos identificar as principais necessidades de suporte das lojas, os serviços mais utilizados e seus impactos na operação, além de mapear oportunidades de melhoria na experiência de atendimento. São 6 perguntas rápidas e as respostas serão analisadas de forma consolidada.")}<div class="nav"><button class="pri" data-go="1">Começar</button></div>`;
+ if(s==="loja"){
+  const L=LOJAS.filter(l=>!q||norm(l.c+" "+l.n).includes(norm(q)));
+  h=`${head("Pergunta 1 de 6",'Qual é a sua loja? <span class="req">*</span>',"Busque pelo número ou pelo nome.")}
+  <input class="search" id="q" type="search" placeholder="Ex.: 1058 ou Barueri" value="${esc(q)}" aria-label="Buscar loja">
+  <div class="list scrollbox" role="radiogroup">${L.map(l=>`<label class="opt ${st.loja===l.c?"on":""}"><input type="radio" name="loja" value="${esc(l.c)}" ${st.loja===l.c?"checked":""}><b>${esc(l.c)}</b>${esc(l.n)}</label>`).join("")||'<p class="empty">Nenhuma loja encontrada.</p>'}</div>${nav()}`;
+ }
+ if(s==="areas"){
+  const n=st.areas.length;
+  h=`${head("Pergunta 2 de 6",'Quais são as áreas que você mais solicita suporte no Leo Resolve? <span class="req">*</span>',"Selecione exatamente 3 áreas.")}
+  <span class="count ${n===MAXA?"full":""}">${n} de ${MAXA} selecionadas</span>
+  <div class="list">${AREAS.map(a=>{const on=st.areas.includes(a),off=!on&&n>=MAXA;return `<label class="opt ${on?"on":""} ${off?"off":""}"><input type="checkbox" data-area="${esc(a)}" ${on?"checked":""} ${off?"disabled":""}>${esc(a)}<small>${SERV[a].length} serviço${SERV[a].length>1?"s":""}</small></label>`}).join("")}</div>${nav()}`;
+ }
+ if(s==="servicos"){
+  const cnt=a=>st.servicos.filter(k=>k.split(" › ")[0]===a).length;
+  h=`${head("Pergunta 3 de 6",'Considerando as áreas selecionadas, quais serviços você mais solicita? <span class="req">*</span>',"Selecione até 3 serviços de cada área.")}
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px">${st.areas.map(a=>`<span class="count ${cnt(a)===Math.min(MAXS,SERV[a].length)?"full":""}">${esc(a)}: ${cnt(a)} de ${Math.min(MAXS,SERV[a].length)}</span>`).join("")}</div>
+  <input class="search" id="q" type="search" placeholder="Buscar serviço" value="${esc(q)}" aria-label="Buscar serviço">
+  <div class="list scrollbox">${st.areas.map(a=>{const S=SERV[a].filter(x=>!q||norm(x).includes(norm(q)));if(!S.length)return"";const n=cnt(a);
+   return `<div class="grp">${esc(a)}</div>`+S.map(x=>{const k=key(a,x),on=st.servicos.includes(k),off=!on&&n>=MAXS;return `<label class="opt ${on?"on":""} ${off?"off":""}"><input type="checkbox" data-serv="${esc(k)}" ${on?"checked":""} ${off?"disabled":""}>${esc(x)}</label>`}).join("")}).join("")||'<p class="empty">Nenhum serviço encontrado.</p>'}</div>${nav()}`;
+ }
+ if(s==="escala"){
+  h=`${head("Pergunta 4 de 6",'Indique o nível de criticidade dos serviços que você mais solicita na sua loja <span class="req">*</span>')}
+  <div class="legend"><p><b>Baixo:</b> incomoda pouco, a loja segue normalmente.</p><p><b>Médio:</b> atrasa algumas atividades.</p><p><b>Alto:</b> afeta vendas, entregas ou o atendimento ao cliente.</p><p><b>Crítico:</b> trava a operação ou gera perda para o cliente ou para a loja.</p></div>
+  ${st.areas.map(a=>`<div class="grp" style="margin:18px 0 8px">${esc(a)}</div>`+st.servicos.filter(k=>k.split(" › ")[0]===a).map(k=>{const j=st.servicos.indexOf(k),x=k.split(" › ")[1];return `<div class="rate" role="radiogroup" aria-label="${esc(x)}"><h3>${esc(x)}</h3><div class="scale">${ESCALA.map(e=>`<label data-v="${e}" class="${st.escala[k]===e?"on":""}"><input type="radio" name="r${j}" data-rate="${esc(k)}" value="${e}" ${st.escala[k]===e?"checked":""}>${e}</label>`).join("")}</div></div>`}).join("")).join("")}${nav()}`;
+ }
+ if(s==="dif"){
+  const n=st.dificuldades.length;
+  h=`${head("Pergunta 5 de 6",'Quais são as principais dificuldades encontradas atualmente no atendimento dos seus chamados? <span class="req">*</span>',"Selecione 3 opções.")}
+  <span class="count ${n===MAXD?"full":""}">${n} de ${MAXD} selecionadas</span>
+  <div class="list">${DIF.map(d=>{const on=st.dificuldades.includes(d),off=!on&&n>=MAXD;return `<label class="opt ${on?"on":""} ${off?"off":""}"><input type="checkbox" data-dif="${esc(d)}" ${on?"checked":""} ${off?"disabled":""}>${d==="Outro"?"Outra (qual?)":esc(d)}</label>`}).join("")}</div>
+  ${st.dificuldades.includes("Outro")?`<input class="other" id="outro" placeholder="Descreva a outra dificuldade" value="${esc(st.outro)}" aria-label="Outra dificuldade">`:""}${nav()}`;
+ }
+ if(s==="aberta") h=`${head("Pergunta 6 de 6","Compartilhe algum exemplo ou situação recorrente que tenha prejudicado a operação da sua loja","Opcional. Se puder, conte qual serviço, o que aconteceu, quanto tempo levou e como isso afetou a loja ou o cliente.")}
+  <textarea id="ex" maxlength="1500" placeholder="Ex.: Abrimos chamado de alteração de data de entrega e…">${esc(st.exemplos)}</textarea>
+  <div class="help" style="margin:6px 0 0;text-align:right;font-size:13px"><span id="cc">${st.exemplos.length}</span>/1500</div>${nav(true,"Enviar respostas")}`;
+ if(s==="fim") h=`<div class="done"><div class="badge"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#00583D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>${head("","Obrigado pela participação!","Suas respostas vão ajudar a Leo a priorizar melhorias no Leo Resolve e a agilizar o suporte às lojas.")}<div class="sign"><img src="data:image/png;base64,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" alt="Leo">#TamoJunto na Marcenaria</div></div>`;
+ F.innerHTML=h;
+ document.getElementById("bar").style.width=(i/(STEPS.length-1)*100)+"%";
+ {const n=["Início","Pergunta 1 de 6","Pergunta 2 de 6","Pergunta 3 de 6","Pergunta 4 de 6","Pergunta 5 de 6","Pergunta 6 de 6","Concluído"];document.getElementById("stepTxt").textContent=n[i];}
+}
+const ENDPOINT="https://script.google.com/macros/s/AKfycbykusyx6of07p62cpgDTU99K5WQtPZeFsLj-fpHT47d7rjQmBnZ9yV4It6m_1KVCiDJ/exec";
+let sending=false;
+function payload(){
+ const lj=LOJAS.find(l=>l.c===st.loja)||{c:"",n:""};
+ return {loja_codigo:lj.c,loja_nome:lj.n,areas:st.areas.slice(),
+  servicos:st.servicos.map(k=>{const [a,x]=k.split(" › ");return {area:a,servico:x,criticidade:st.escala[k]||""}}),
+  dificuldades:st.dificuldades.slice(),outro:st.outro.trim(),exemplos:st.exemplos.trim()};
+}
+async function enviar(){
+ if(sending) return;sending=true;
+ const b=F.querySelector(".pri"),el=document.getElementById("err");
+ if(b){b.disabled=true;b.textContent="Enviando…";}if(el)el.textContent="";
+ try{
+  const r=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload())});
+  const j=await r.json();
+  if(!j.ok) throw new Error(j.erro||"erro");
+  sending=false;i=STEPS.length-1;render();
+ }catch(err){
+  sending=false;if(b){b.disabled=false;b.textContent="Enviar respostas";}
+  if(el)el.textContent="Não foi possível enviar agora. Verifique a internet e tente de novo.";
+ }
+}
+function go(d){
+ const s=STEPS[i];
+ if(d>0){const e=validate(s);if(e){const el=document.getElementById("err");if(el)el.textContent=e;return;}}
+ if(d>0&&s==="aberta"){enviar();return;}
+ i=Math.max(0,Math.min(STEPS.length-1,i+d));q="";render();F.scrollIntoView({block:"start",behavior:"smooth"});
+}
+F.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)go(+b.dataset.go);});
+F.addEventListener("input",e=>{
+ const t=e.target;
+ if(t.id==="q"){q=t.value;const pos=t.selectionStart;render();const n=document.getElementById("q");n.focus();n.setSelectionRange(pos,pos);return;}
+ if(t.id==="ex"){st.exemplos=t.value;document.getElementById("cc").textContent=t.value.length;return;}
+ if(t.id==="outro"){st.outro=t.value;return;}
+});
+F.addEventListener("change",e=>{
+ const t=e.target,tog=(arr,v,on)=>on?(arr.includes(v)?arr:[...arr,v]):arr.filter(x=>x!==v);
+ if(t.name==="loja") st.loja=t.value;
+ else if(t.dataset.area){st.areas=tog(st.areas,t.dataset.area,t.checked);prune();}
+ else if(t.dataset.serv){st.servicos=tog(st.servicos,t.dataset.serv,t.checked);prune();}
+ else if(t.dataset.rate) st.escala[t.dataset.rate]=t.value;
+ else if(t.dataset.dif){st.dificuldades=tog(st.dificuldades,t.dataset.dif,t.checked);if(!st.dificuldades.includes("Outro"))st.outro="";}
+ else return;
+ const y=(document.querySelector(".scrollbox")||{}).scrollTop;render();const sb=document.querySelector(".scrollbox");if(sb&&y)sb.scrollTop=y;
+});
+function start(){st=blank();i=0;q="";render();}
+start();
+}
+</script>
+</body>
+</html>
